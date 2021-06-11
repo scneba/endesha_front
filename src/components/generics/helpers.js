@@ -61,6 +61,57 @@ export function getPermissionIds(selectedOptions) {
   return permissions_id;
 }
 
+//Get value/label pair for categories
+export function getCategoriesValueLabelPair(categories) {
+  let values = [];
+  if (categories) {
+    categories.forEach((cat) =>
+      values.push({
+        value: cat.id,
+        label: cat.name,
+      }),
+    );
+  }
+  return values;
+}
+
+//Get get default value of react select for categories
+export function getCategoriesDefaultValue(categories, category_id) {
+  let value = {};
+  console.log(categories);
+  console.log(category_id);
+  if (categories && category_id) {
+    let category = categories.filter((cat) => cat.id === category_id);
+    value.value = category[0].id;
+    value.label = category[0].name;
+  }
+  return value;
+}
+
+//Get get default value of react select for categories
+export function getAnswerDefaultValue(answers, answer_id) {
+  let value = {};
+  if (answers && answer_id) {
+    let answer = answers.filter((ans) => ans.id === answer_id);
+    value.value = answer[0].id;
+    value.label = answer[0].short_description;
+  }
+  return value;
+}
+
+//Get value/label pair for answers
+export function getAnswersValueLabelPair(answers) {
+  let values = [];
+  if (answers) {
+    answers.forEach((ans) =>
+      values.push({
+        value: ans.id,
+        label: ans.short_description,
+      }),
+    );
+  }
+  return values;
+}
 // adds roleId and portfolioId to inital roles -- these come from the API without IDs
 export function populateIds(initialRoles, roles, portfolios) {
   if (initialRoles != null) {

@@ -16,6 +16,7 @@ export const en = {
   saving: "Saving",
   register: "Register",
   requestFailedwithErrors: "The request failed with the following errors:",
+  action: "Actions",
 };
 
 export const fr = {};

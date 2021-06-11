@@ -2,6 +2,7 @@ export const en = {
   verb: "Verb",
   permission: "Permission",
   permissions: "Permissions",
+  categories: "Categories",
   users: "Users",
   confirmDel: "Are you sure you want to delete this permission?",
   roles: "Roles",
@@ -17,7 +18,9 @@ export const en = {
   confirmUserDelete: "Are you sure you want to delete user?",
   noDeletePermission: "User does not have delete permissions",
   confirmDelRole: "Are you sure you want to delete this role?",
+  confirmDelCategory: "Are you sure you want to delete this category?",
   addPerm: "Add Permission",
+  addCat: "Add Category",
   name: "Name",
   username: "UserName",
   email: "Email",
@@ -27,4 +30,5 @@ export const en = {
   noRoleAdded: "No role added",
   assignRoles: "Assign roles",
   selectRole: "Select Role",
+  editCategory: "Edit Category",
 };

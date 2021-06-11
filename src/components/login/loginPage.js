@@ -26,6 +26,7 @@ export default function LoginPage({ setUser }) {
   if (user) {
     return <Redirect to={query.redirect ? query.redirect : "/"}></Redirect>;
   }
+  
   const onSubmit = async (data) => {
     setDisable(true);
     setErrors([]);
