@@ -14,6 +14,8 @@ import UserRoleList from "./components/admin/user_role_list";
 import UserList from "./components/admin/users";
 import Categories from "./components/admin/categories";
 import Questions from "./components/admin/questions";
+import Answers from "./components/admin/answer_list";
+import AnswerDetails from "./components/admin/answer_details";
 import LoginPage from "./components/login/loginPage";
 import { getCurrentUser } from "./services/auth";
 require("dotenv").config();
@@ -66,6 +68,12 @@ function App() {
               </Route>
               <Route exact path="/admin/questions">
                 <Questions />
+              </Route>
+              <Route exact path="/admin/answers">
+                <Answers />
+              </Route>
+              <Route path="/admin/answers/edit/:id">
+                <AnswerDetails />
               </Route>
               <Route exact path="/login">
                 <LoginPage setUser={setUser} />
