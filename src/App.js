@@ -17,6 +17,7 @@ import Questions from "./components/admin/questions";
 import Answers from "./components/admin/answer_list";
 import AnswerDetails from "./components/admin/answer_details";
 import LoginPage from "./components/login/loginPage";
+import Images from "./components/admin/images";
 import { getCurrentUser } from "./services/auth";
 require("dotenv").config();
 
@@ -72,8 +73,11 @@ function App() {
               <Route exact path="/admin/answers">
                 <Answers />
               </Route>
-              <Route path="/admin/answers/edit/:id">
+              <Route path="/admin/answers/edit/:id?">
                 <AnswerDetails />
+              </Route>
+              <Route exact path="/admin/images">
+                <Images />
               </Route>
               <Route exact path="/login">
                 <LoginPage setUser={setUser} />

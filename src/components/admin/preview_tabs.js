@@ -8,7 +8,8 @@ import RehypeRaw from "rehype-raw";
 export default function PreviewTabs({
   convertedContent,
   setConvertedContent,
-  defaultValue,
+  rawState,
+  setRawState,
   heading,
   sm,
   md,
@@ -18,7 +19,6 @@ export default function PreviewTabs({
   const [useEditor, setUseEditor] = useState(true);
 
   const handleEditorChange = (e) => {
-    console.log(e.target.value);
     if (e.target.value === "1") {
       setUseEditor(true);
     } else {
@@ -50,13 +50,13 @@ export default function PreviewTabs({
             {useEditor ? (
               <DraftEditor
                 setConvertedContent={setConvertedContent}
-                defaultValue={defaultValue}
+                rawState={rawState}
+                setRawState={setRawState}
               ></DraftEditor>
             ) : (
               <MarkdownEditor
                 convertedContent={convertedContent}
                 setConvertedContent={setConvertedContent}
-                defaultValue={defaultValue}
               ></MarkdownEditor>
             )}
           </Tab>
@@ -74,15 +74,9 @@ export default function PreviewTabs({
   );
 }
 
-function MarkdownEditor({
-  sm,
-  md,
-  lg,
-  convertedContent,
-  setConvertedContent,
-  defaultValue,
-}) {
+function MarkdownEditor({ sm, md, lg, convertedContent, setConvertedContent }) {
   const { t } = useTranslation(["admin"]);
+
   return (
     <Col md={md ? md : 10} sm={sm ? sm : 10} lg={lg ? lg : 10}>
       <Form.Control

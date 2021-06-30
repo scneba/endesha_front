@@ -31,4 +31,21 @@ export const en = {
   assignRoles: "Assign roles",
   selectRole: "Select Role",
   editCategory: "Edit Category",
+
+  answers: "Answers",
+  description: "Description",
+  answer: "Answer",
+  addAnswer: "Add Answer",
+
+  images: "Images",
+  image: "Image",
+  addImage: "Add Image",
+  editImage: "Edit Image",
+  selectImage: "Select an Image",
+  textCopied: "Text copied to ClipBoard",
+
+  questions: "Questions",
+  question: "Question",
+  category: "Category",
+  addQuestion: "Add Question",
 };

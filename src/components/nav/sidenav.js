@@ -54,6 +54,10 @@ export default function SideBar() {
               {t("categories")}
               <Link to="/admin/categories" />
             </MenuItem>
+            <MenuItem>
+              {t("images")}
+              <Link to="/admin/images" />
+            </MenuItem>
           </SubMenu>
         </Menu>
       </ProSidebar>

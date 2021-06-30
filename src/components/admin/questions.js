@@ -69,7 +69,7 @@ export default function Questions() {
   return (
     <React.Fragment>
       <h1 className="mb-3 display-4 text-primary">
-        <FontAwesomeIcon icon="user-tag" /> {t("questions")}
+        <FontAwesomeIcon icon="question" /> {t("questions")}
       </h1>
       <QuestionTable
         questions={questions}
@@ -161,9 +161,9 @@ export function QuestionTable({
     }
     return (
       <tr>
-        <td>{question.question}</td>
-        <td>{getQuestionCategoryName()}</td>
-        <td>
+        <td width="65%">{question.question}</td>
+        <td width="25%">{getQuestionCategoryName()}</td>
+        <td width="15%">
           <Row>
             <DeleteQuestion
               id={question.id}
@@ -317,12 +317,13 @@ function EditQuestionForm({
         <Col sm={10} lg={10}>
           <Form.Control
             type="text"
-            name="name"
+            name="question"
+            as="textarea"
             className="my-2"
             required
             value={updatedQuestion}
             onChange={(e) => setUpdatedQuestion(e.target.value)}
-            placeholder={t("name")}
+            placeholder={t("question")}
           ></Form.Control>
         </Col>
       </Form.Row>

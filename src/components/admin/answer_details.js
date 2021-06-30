@@ -18,11 +18,12 @@ export default function AnswerDetails() {
   const canEdit = usePermissions(endeshaApi.ANSWERS_PATH, "PATCH");
   const canView = usePermissions(endeshaApi.ANSWERS_PATH, "GET");
 
-  const [answer, setAnswer] = useState("");
   const [description, setDescription] = useState("");
   //get id from path
   const { id } = useParams();
   const [convertedContent, setConvertedContent] = useState(null);
+  const [rawState, setRawState] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     const getAnswer = async () => {
@@ -31,8 +32,9 @@ export default function AnswerDetails() {
         setLoading(true);
         const resp = await endeshaApi.getAnswerByID(id);
         let ans = resp.data.data;
-        setAnswer(ans.answer);
+        setRawState(JSON.parse(ans.answer));
         setDescription(ans.short_description);
+        setConvertedContent(ans.answer_md);
       } catch (err) {
         console.log(err);
         showErrorsPopUp(err);
@@ -46,19 +48,36 @@ export default function AnswerDetails() {
 
   const submitAnswer = async (e) => {
     e.preventDefault();
-    console.log(e);
-    // var data = { id: answer.id, name, description };
-    // try {
-    //   setErrors([]);
-    //   setSaving(true);
-    //   await endeshaApi.updateAnswer(data);
-    //   fetchAnswers();
-    //   showPopup(t("shared:success"), "success");
-    //   setShow(false);
-    // } catch (err) {
-    //   console.log(err);
-    //   showErrors(err, setErrors);
-    // }
+    try {
+      let answerString = JSON.stringify(rawState);
+      if (id) {
+        //update answer
+        let data = {
+          id,
+          answer: answerString,
+          short_description: description,
+          answer_md: convertedContent,
+        };
+        setErrors([]);
+        setSaving(true);
+        await endeshaApi.updateAnswer(data);
+        history.push("/admin/answers");
+      } else {
+        //update answer
+        let data = {
+          answer: answerString,
+          short_description: description,
+          answer_md: convertedContent,
+        };
+        setErrors([]);
+        setSaving(true);
+        await endeshaApi.createAnswer(data);
+        history.push("/admin/answers");
+      }
+    } catch (err) {
+      console.log(err);
+      showErrors(err, setErrors);
+    }
     setSaving(false);
   };
 
@@ -92,8 +111,9 @@ export default function AnswerDetails() {
         <PreviewTabs
           convertedContent={convertedContent}
           setConvertedContent={setConvertedContent}
+          rawState={rawState}
+          setRawState={setRawState}
           heading={t("answer")}
-          defaultValue={answer}
           sm={10}
           md={10}
           lg={10}

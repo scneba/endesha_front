@@ -112,6 +112,7 @@ export function CreateCategoryForm({ fetchCategories }) {
             disabled={saving}
             style={{ marginLeft: "auto" }}
           >
+            <FontAwesomeIcon icon="plus" className="mr-2"></FontAwesomeIcon>
             {saving ? t("shared:saving") : t("addCat")}
           </Button>
         </Col>
@@ -176,9 +177,9 @@ export function CategoryTable({ categories, fetchCategories }) {
   function CategoryRow({ category, fetchCategories }) {
     return (
       <tr>
-        <td>{category.name}</td>
-        <td>{category.description}</td>
-        <td>
+        <td width="20%">{category.name}</td>
+        <td width="65%">{category.description}</td>
+        <td width="15%">
           <Row>
             <DeleteCategory
               id={category.id}
